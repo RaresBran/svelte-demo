@@ -71,7 +71,7 @@
     gap: 0.5rem;
   }
 
-  input {
+  form input {
     width: 100%;
   }
 
