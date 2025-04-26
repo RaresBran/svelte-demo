@@ -19,11 +19,11 @@
   
   <form on:submit|preventDefault={addTask}>
     <input 
-      placeholder="Adaugă o sarcină..." 
+      placeholder="Add a task..." 
       bind:value={newTask} 
       required
     />
-    <button type="submit">Adaugă</button>
+    <button type="submit">Add</button>
   </form>
 
   {#if tasks.length > 0}
@@ -31,15 +31,15 @@
       {#each tasks as task, index}
         <li>
           <input type="checkbox" bind:checked={task.done}>
-          <span style: text-decoration={task.done ? 'line-through' : 'none'}>
+          <span style:text-decoration={task.done ? 'line-through' : 'none'}>
             {task.name}
           </span>
-          <button on:click={() => deleteTask(index)}>Șterge</button>
+          <button on:click={() => deleteTask(index)}>Remove</button>
         </li>
       {/each}
     </ul>
   {:else}
-    <p>Nu există sarcini momentan.</p>
+    <p>No tasks for now.</p>
   {/if}
 </main>
 
@@ -67,9 +67,18 @@
   li {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 0.5rem;
-    margin-bottom: 0.5rem;
   }
+
+  input {
+    width: 100%;
+  }
+
+  li span {
+    flex: 1;
+  }
+
   button {
     cursor: pointer;
   }
