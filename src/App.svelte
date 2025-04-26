@@ -1,4 +1,5 @@
 <script>
+  import { fade } from 'svelte/transition';
   let newTask = "";
   let tasks = [];
 
@@ -28,8 +29,8 @@
 
   {#if tasks.length > 0}
     <ul>
-      {#each tasks as task, index}
-        <li>
+      {#each tasks as task, index (task.name)}
+        <li transition:fade>
           <input type="checkbox" bind:checked={task.done}>
           <span style:text-decoration={task.done ? 'line-through' : 'none'}>
             {task.name}
@@ -37,7 +38,7 @@
           <button on:click={() => deleteTask(index)}>Remove</button>
         </li>
       {/each}
-    </ul>
+    </ul>  
   {:else}
     <p>No tasks for now.</p>
   {/if}
